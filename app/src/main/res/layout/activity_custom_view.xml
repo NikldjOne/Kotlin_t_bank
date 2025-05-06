@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CustomView.CustomVIewActivity">
+
+
+    <com.github.rezaiyan.levelprogressbar.LevelProgressBar
+        android:id="@+id/p1"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:spb_background_color="@color/material_dynamic_neutral_variant0"
+        app:spb_is_enable="true"
+        app:spb_is_step_progress="true"
+        app:spb_level="level6"
+        app:spb_src="@drawable/income_icon"
+        app:spb_stroke_with="10"
+        app:spb_text_level_color="#fff"
+        app:spb_text_title_color="#040504"
+        app:spb_unprogress_color="#E6E6E6" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
