@@ -15,13 +15,15 @@ import com.example.android_t_bank.Retrofit.data.network.ApiClient
 import com.example.android_t_bank.Retrofit.data.network.ApiService
 import com.example.android_t_bank.Retrofit.data.network.OperationService
 import com.example.android_t_bank.Retrofit.data.network.Operations
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
-import retrofit2.create
 
 class RetrofitActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
@@ -51,7 +53,7 @@ class RetrofitActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<List<Post>>, t: Throwable) {
-                Log.e("API", "error request")
+                Log.e("API", t.toString())
             }
 
         })
@@ -61,21 +63,25 @@ class RetrofitActivity : AppCompatActivity() {
     private fun getOperations() {
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+        val contentType = "application/json".toMediaType()
         val client = OkHttpClient.Builder().addInterceptor(loggingInterceptor).build()
 
-        val retrofit = Retrofit.Builder().client(client).baseUrl(BASE_URl).build()
+        val retrofit = Retrofit.Builder().client(client)
+            .addConverterFactory(Json.asConverterFactory(contentType))
+            .baseUrl(BASE_URl).build()
+
         val service = retrofit.create(OperationService::class.java)
-        service.getOperations("Олег").enqueue(
+        service.getOperations("operations").enqueue(
             object : Callback<Operations> {
                 override fun onResponse(call: Call<Operations>, response: Response<Operations>) {
-                   if(response.isSuccessful){
-                       val operations = response.body()
-                       Log.i(TAG, operations.toString())
-                   }
+                    if (response.isSuccessful) {
+                        val operations = response.body()
+                        Log.i(TAG, operations.toString())
+                    }
                 }
 
                 override fun onFailure(call: Call<Operations>, t: Throwable) {
-                   Log.e("","")
+                    Log.e(TAG, t.toString())
                 }
 
             })

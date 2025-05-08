@@ -50,6 +50,7 @@ dependencies {
     implementation (libs.converter.gson.v290)
     implementation (libs.okhttp.v493)
     implementation (libs.logging.interceptor)
+    implementation(libs.retrofit2.kotlinx.serialization.converter)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation (libs.levelprogressbar)
