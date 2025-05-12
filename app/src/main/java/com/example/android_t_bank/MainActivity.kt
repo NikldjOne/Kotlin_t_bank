@@ -7,6 +7,7 @@ import com.example.android_t_bank.CustomView.CustomVIewActivity
 import com.example.android_t_bank.Fragment.MainActivityFragments
 import com.example.android_t_bank.RecyclerView.RecyclerActivity
 import com.example.android_t_bank.Retrofit.UI.RetrofitActivity
+import com.example.android_t_bank.coroutines.CoroutinesActivity
 import com.example.android_t_bank.databinding.ActivityMainBinding
 
 interface Message {
@@ -33,6 +34,9 @@ class MainActivity : AppCompatActivity() {
         }
         binding.retrofitBtn.setOnClickListener {
             goScreen(RetrofitActivity::class.java)
+        }
+        binding.coroutinesBtn.setOnClickListener {
+            goScreen(CoroutinesActivity::class.java)
         }
     }
 
